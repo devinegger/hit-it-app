@@ -1,9 +1,9 @@
-{
+ {
   "name": "hit-it-app",
   "version": "1.0.0",
   "description": "This is how you Hit It",
-  "main": "index.js",
   "scripts": {
+    "dev": "webpack",
     "test": "test"
   },
   "repository": {
@@ -21,5 +21,9 @@
   "homepage": "https://github.com/devinegger/hit-it-app#readme",
   "dependencies": {
     "normalize.css": "^8.0.1"
+  },
+  "devDependencies": {
+    "webpack": "^5.83.1",
+    "webpack-cli": "^5.1.1"
   }
 }
