@@ -1,1 +1,9 @@
+# App
+/node_modules
+*.sass_cache
+.tmp/
 
+
+# General
+.DS_Store
+Thumbs.db

@@ -1,0 +1,25 @@
+{
+  "name": "hit-it-app",
+  "version": "1.0.0",
+  "description": "This is how you Hit It",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devinegger/hit-it-app.git"
+  },
+  "keywords": [
+    "geolocation"
+  ],
+  "author": "DeviOus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devinegger/hit-it-app/issues"
+  },
+  "homepage": "https://github.com/devinegger/hit-it-app#readme",
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  }
+}
