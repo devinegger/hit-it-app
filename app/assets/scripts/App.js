@@ -1,1 +1,5 @@
-alert('hit it - whoa! still has it!');
+import '../styles/styles.css'
+
+if (module.hot) {
+    module.hot.accept()
+}
