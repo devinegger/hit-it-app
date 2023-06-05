@@ -1,0 +1,11 @@
+html, body {
+    height: 100dvh;
+}
+
+main {
+    font-family: 'Geologica', sans-serif;
+    display: flex;
+    flex-direction: column;
+    place-content: center ;
+    height: 100%;
+}
