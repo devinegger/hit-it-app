@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/devinegger/hit-it-app#readme",
   "dependencies": {
+    "@supabase/supabase-js": "^2.24.0",
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {
