@@ -20,12 +20,14 @@
   },
   "homepage": "https://github.com/devinegger/hit-it-app#readme",
   "dependencies": {
+    "@googlemaps/js-api-loader": "^1.16.1",
     "@supabase/supabase-js": "^2.24.0",
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",
     "css-loader": "^6.7.4",
+    "dotenv-webpack": "^8.0.1",
     "postcss-import": "^15.1.0",
     "postcss-loader": "^7.3.0",
     "postcss-nested": "^6.0.1",

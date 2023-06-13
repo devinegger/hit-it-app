@@ -1,4 +1,5 @@
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 
 const postCSSPlugins = [
     require('postcss-import'),
@@ -22,6 +23,19 @@ module.exports = {
         port: 3000,
         host: '0.0.0.0'
     },
+    // resolve: {
+    //     fallback: {
+    //         "path": require.resolve("path-browserify"),
+    //         "os": require.resolve("os-browserify/browser"),
+    //         "crypto": require.resolve("crypto-browserify"),
+    //         "stream": require.resolve("stream-browserify"),
+    //         "buffer": require.resolve("buffer/"),
+
+    //     }
+    // },
+    plugins: [
+        new Dotenv()
+    ],
     mode: 'development',
     module: {
         rules: [

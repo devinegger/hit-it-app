@@ -2,7 +2,7 @@
 /node_modules
 *.sass_cache
 .tmp/
-
+.env
 
 # General
 .DS_Store

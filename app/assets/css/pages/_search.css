@@ -1,9 +1,18 @@
 .search {
-    display: none;
+    display: flex;
     height: 100%;
     width: 100%;
     color: var(--dark-green);
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+#map {
+    min-height: 400px;
+    height: 400px;
+    width: 680px;
+    position: relative;
+    border: 4px solid var(--dark-green);
+    margin: 40px;
 }
