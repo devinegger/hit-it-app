@@ -4,23 +4,15 @@
     v: "weekly"
 });
 
-let userPosition;
-
-navigator.geolocation.getCurrentPosition((position) => {
-    // console.log(position);
-    
-    userPosition = { lat: position.coords.latitude, lng: position.coords.longitude };
-}, (error) => {
-    console.log(error);
-});
+var map;
 
 
 // initialize map
-export async function initMap() {
+export async function initMap(userPosition) {
     const { Map } = await google.maps.importLibrary("maps");
     const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
-    const map = new Map(document.getElementById("map"), {
+    map = new Map(document.getElementById("map"), {
         center: userPosition,
         zoom: 8,
         mapId: process.env.CURRENT_LOCATIOIN_MAP_ID,
@@ -33,6 +25,19 @@ export async function initMap() {
         position: userPosition,
         title: 'Hit It Location!',
     });
+}
 
-    return map;
+
+export async function loadMapData(data) {
+    console.log('loading data... ', data)
+    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+    data.map(hit => {
+        console.log(hit.location.latitude, hit.location.longitude)
+        let latLng = new google.maps.LatLng(hit.location.latitude, hit.location.longitude);
+        let newMarker = new AdvancedMarkerElement({
+            position: latLng,
+            map: map,
+            title: hit.name
+        });
+    });
 }

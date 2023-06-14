@@ -1,5 +1,5 @@
 .search {
-    display: flex;
+    display: none;
     height: 100%;
     width: 100%;
     color: var(--dark-green);
