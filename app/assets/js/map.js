@@ -18,8 +18,6 @@ export async function initMap(userPosition) {
         mapId: process.env.CURRENT_LOCATIOIN_MAP_ID,
     });
 
-    // console.log(map);
-
     const marker = new AdvancedMarkerElement({
         map: map,
         position: userPosition,

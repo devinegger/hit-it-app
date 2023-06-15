@@ -7,10 +7,11 @@
 // - - use .env variables ✅
 // - start moving functions to inidividual files and import here ✅
 // - display loading symbol on map while getting user position ✅
-// - use map API to get distance between user location and hits 
+// - use map API to get distance between user location and hits ✅
 // - - display hits in order of distance from user 
-// - - display distance from user on hit list
+// - - display distance from user on hit list ✅
 // - use local storage to save hits selected by user
+// - move user position function to gelocation.js
 
 // webpack dev stuff
 import 'normalize.css'
@@ -22,7 +23,9 @@ if (module.hot) {
 
 // js imports
 import { initMap, loadMapData } from './map'
-import { supabase } from './supabase.js'
+import { supabase } from './supabase'
+import {getDistanceFromUserToHit} from './geolocation'
+
 // import { getUserLocation } from './geolocation'  ?? move user location to here ??
 
 
@@ -35,12 +38,25 @@ navigator.geolocation.getCurrentPosition((position) => {
 
     initMap(userPosition);
 
-    displaySearchButton();
+    // userLocation.textContent = `Your Location: ${userPosition.lat}, ${userPosition.lng}`;
+    userLocation_lat.textContent = userPosition.lat;
+    userLocation.dataset.userLat = userPosition.lat;
+
+    userLocation_lng.textContent = userPosition.lng;
+    userLocation.dataset.userLng = userPosition.lng;
+
+    // displaySearchButton();
+
+    displayPageSearch();
 
 }, (error) => {
     console.log(error);
 });
 
+
+
+// geta all pages
+const pages = document.querySelectorAll('.page');
 
 
 // *** loading page elements ***
@@ -70,6 +86,11 @@ const hit_loader = search.querySelector('.hit_loader');
 // html element in which we will display hits
 const hitsList = search.querySelector('.hits__list');
 
+const userLocation = search.querySelector('.user-location');
+
+const userLocation_lat = userLocation.querySelector('.user_lat');
+const userLocation_lng = userLocation.querySelector('.user_lng');
+
 // display results of hit query on map and in hit list
 hit_loader.addEventListener('click', loadHitsJSON);
 
@@ -91,13 +112,19 @@ async function loadHitsJSON() {
 
 // builds out hits list with provided json data
 function buildHitList(hits) {
+    const user = { lat: userLocation.dataset.userLat, lng: userLocation.dataset.userLng};
+
+    console.log(user);
+
     hits.map(hit => {
+        let distance = getDistanceFromUserToHit(user, hit.location)*5280; // distance in feet
         hitsList.innerHTML += `<div class="hits__item">`;
         hitsList.innerHTML += `<div class="hits__item__name"><h2>${hit.name}</h2></div>`;
         hitsList.innerHTML += `<div class="hits__item__url">${hit.url}</div>`;
+        hitsList.innerHTML += `<div class="hits__item__status">Distance: ${distance.toFixed(2)} feet</div>`;
         hitsList.innerHTML += `<div class="hits__item__location">${hit.location.latitude}, ${hit.location.longitude}</div>`;
-        hitsList.innerHTML += `<div class="hits__item__status">${hit.status}</div>`;
-        hitsList.innerHTML += `<div class="hits__item__visibility">${hit.visibility}</div>`;
+        // hitsList.innerHTML += `<div class="hits__item__status">${hit.status}</div>`;
+        // hitsList.innerHTML += `<div class="hits__item__visibility">${hit.visibility}</div>`;
         hitsList.innerHTML += `</div>`;
     });
 }
@@ -113,3 +140,5 @@ function displayPageSearch() {
     loading.style.display = 'none';
     search.style.display = 'flex';
 }
+
+// getUserLoction();

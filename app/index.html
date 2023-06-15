@@ -14,23 +14,27 @@
 </head>
 <body>
     <main>
-        <div class="loading">
+        <div class="page loading">
             <div class="logo-pulse">
                 <div class="logo-container">
                     <img src="/assets/img/hititlogowhite.png" alt="">
                 </div>
             </div>
-            <p class="loading__message">loading...</p>
+            <p class="loading__message">retrieving position...</p>
             <button class="loading__button">Search</button>
         </div>
 
-        <div class="search">
+        <div class="page search">
             <img src="assets/img/hititlogogreen.jpg" alt="">
             <div id="map"></div>
+            <p class="user-location" data-user-lat="" data-user-lng="">
+                Your location:
+                <span class="user_lat"></span>
+                <span class="user_lng"></span>
+            </p>
             <button class="hit_loader">Load Hits</button>
             <div class="hits">
                 <div class="hits__list">
-
                 </div>
             </div>
         </div>

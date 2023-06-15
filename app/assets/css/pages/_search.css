@@ -5,7 +5,10 @@
     color: var(--dark-green);
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+
+    .hit-it {
+        display: block;
+    }
 }
 
 #map {
