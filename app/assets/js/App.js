@@ -153,7 +153,7 @@ function buildHitList(hits) {
         hitsList.innerHTML += `<div class="hits__item__name"><h2>${hit.name}</h2></div>`;
         hitsList.innerHTML += `<div class="hits__item__url">${hit.url}</div>`;
         hitsList.innerHTML += `<div class="hits__item__status">Distance: ${distance.toFixed(2)} feet</div>`;
-        hitsList.innerHTML += `<div class="hits__item__location">${hit.location.latitude}, ${hit.location.longitude}</div>`;
+        // hitsList.innerHTML += `<div class="hits__item__location">${hit.location.latitude}, ${hit.location.longitude}</div>`;
         // hitsList.innerHTML += `<div class="hits__item__status">${hit.status}</div>`;
         // hitsList.innerHTML += `<div class="hits__item__visibility">${hit.visibility}</div>`;
         hitsList.innerHTML += `</div>`;

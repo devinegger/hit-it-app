@@ -15,35 +15,41 @@
 <body>
     <main>
         <div class="page loading">
-            <div class="logo-pulse">
-                <div class="logo-container">
-                    <img src="/assets/img/hititlogowhite.png" alt="">
+            <div class="container">
+                <div class="logo-pulse">
+                    <div class="logo-container">
+                        <img src="/assets/img/hititlogowhite.png" alt="">
+                    </div>
                 </div>
+                <p class="loading__message">retrieving position...</p>
+                <button class="loading__button">Search</button>
             </div>
-            <p class="loading__message">retrieving position...</p>
-            <button class="loading__button">Search</button>
         </div>
 
         <div class="page search">
-            <img src="assets/img/hititlogogreen.jpg" alt="">
-            <div id="map"></div>
-            <p class="user-location" data-user-lat="" data-user-lng="">
-                Your location:
-                <span class="user_lat"></span>
-                <span class="user_lng"></span>
-            </p>
-            <select name="" id="" class="distance_filter">
-                <option value=".1" selected>.1 mile</option>
-                <option value=".25" selected>.25 mile</option>
-                <option value=".5" selected>.5 mile</option>
-                <option value="1" selected>1 mile</option>
-                <option value="5">5 mile</option>
-                <option value="10">10 mile</option>
-                <option value="100">100 mile</option>
-            </select>
-            <button class="hit_loader">Load Hits</button>
-            <div class="hits">
-                <div class="hits__list">
+            <div class="container">
+                <img src="assets/img/hititlogogreen.jpg" alt="">
+                <p class="user-location" data-user-lat="" data-user-lng="">
+                    Your location:
+                    <span class="user_lat"></span>
+                    <span class="user_lng"></span>
+                </p>
+                <div class="search__form">
+                    <select name="" id="" class="distance_filter">
+                        <option value=".1" selected>.1 mile</option>
+                        <option value=".25" selected>.25 mile</option>
+                        <option value=".5" selected>.5 mile</option>
+                        <option value="1" selected>1 mile</option>
+                        <option value="5">5 mile</option>
+                        <option value="10">10 mile</option>
+                        <option value="100">100 mile</option>
+                    </select>
+                    <button class="hit_loader">Load Hits</button>
+                </div>
+                <div id="map"></div>
+                <div class="hits">
+                    <div class="hits__list">
+                    </div>
                 </div>
             </div>
         </div>

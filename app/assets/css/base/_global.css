@@ -9,3 +9,8 @@ main {
     place-content: center ;
     height: 100%;
 }
+
+.container {
+    max-width: 600px;
+    padding: 5% 10%;
+}
