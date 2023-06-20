@@ -169,7 +169,7 @@ function displaySearchButton() {
 // displays search page and removes loading page
 function displayPageSearch() {
     loading.style.display = 'none';
-    search.style.display = 'flex';
+    search.style.display = 'block';
 }
 
 // getUserLoction();

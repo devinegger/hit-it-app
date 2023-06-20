@@ -10,7 +10,14 @@ main {
     height: 100%;
 }
 
+.page {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
 .container {
     max-width: 600px;
-    padding: 5% 10%;
+    width: 600px;
+    margin: 5% auto;
 }
