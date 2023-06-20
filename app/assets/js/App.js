@@ -8,8 +8,12 @@
 // - start moving functions to inidividual files and import here ✅
 // - display loading symbol on map while getting user position ✅
 // - use map API to get distance between user location and hits ✅
-// - - display hits in order of distance from user 
 // - - display distance from user on hit list ✅
+// - - display hits in order of distance from user 
+// - load only closest hits to user 
+// - - create setting to switch from all hits to closest hit
+// - - create distance filter for hits ✅
+// - - prevent load hits from loading duplicate hits ✅
 // - use local storage to save hits selected by user
 // - move user position function to gelocation.js
 
@@ -91,6 +95,8 @@ const userLocation = search.querySelector('.user-location');
 const userLocation_lat = userLocation.querySelector('.user_lat');
 const userLocation_lng = userLocation.querySelector('.user_lng');
 
+const distanceFilter = search.querySelector('.distance_filter');
+
 // display results of hit query on map and in hit list
 hit_loader.addEventListener('click', loadHitsJSON);
 
@@ -100,14 +106,39 @@ hit_loader.addEventListener('click', loadHitsJSON);
 // load JSON from supabase
 async function loadHitsJSON() {
 
+    const hitsList_items = hitsList.querySelectorAll('.hits__item');
+    const user = { lat: userLocation.dataset.userLat, lng: userLocation.dataset.userLng};
+
+    const existing_ids = [];
+
+    hitsList_items.forEach(item => {
+        existing_ids.push(item.dataset.id);
+    });
+
+    const ids = existing_ids.join(',');
+
+    console.log(distanceFilter.value);
+
     // get data from supabase
     const { data, error } = await supabase
-      .from('hits')
-      .select()
+        .from('hits')
+        .select()
+        .not('id', 'in', `(${existing_ids.join(',')})`)  // Use `cs` for `contains()`, `{}` for array values
 
-    buildHitList(data);
+    if(error) {
+        console.log(error);
+    } else if(data.length) {
+        console.log('got data!');
+        data.map(hit => {
+            hit.distance = getDistanceFromUserToHit(user, hit.location);
+            console.log(hit);
+        });
+        const filteredData = data.filter(hit => hit.distance < distanceFilter.value);
+        console.log(filteredData);
+        buildHitList(filteredData);
 
-    loadMapData(data);
+        loadMapData(filteredData);
+    }
 }
 
 // builds out hits list with provided json data
@@ -118,7 +149,7 @@ function buildHitList(hits) {
 
     hits.map(hit => {
         let distance = getDistanceFromUserToHit(user, hit.location)*5280; // distance in feet
-        hitsList.innerHTML += `<div class="hits__item">`;
+        hitsList.innerHTML += `<div class="hits__item" data-id="${hit.id}">`;
         hitsList.innerHTML += `<div class="hits__item__name"><h2>${hit.name}</h2></div>`;
         hitsList.innerHTML += `<div class="hits__item__url">${hit.url}</div>`;
         hitsList.innerHTML += `<div class="hits__item__status">Distance: ${distance.toFixed(2)} feet</div>`;
