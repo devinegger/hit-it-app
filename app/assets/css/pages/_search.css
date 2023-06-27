@@ -20,3 +20,31 @@
     position: relative;
     border: 4px solid var(--dark-green);
 }
+
+.hits {
+    &__list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    &__item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: .5rem;
+        color: var(--dark-green);
+        cursor: pointer;
+        border-bottom: 1px solid var(--dark-green);
+
+        &:hover {
+            background-color: var(--dark-green);
+            color: white;
+        }
+    }
+
+    &__item_name {
+        font-size: 1rem;
+    }
+}

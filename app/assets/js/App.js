@@ -16,6 +16,13 @@
 // - - prevent load hits from loading duplicate hits ✅
 // - use local storage to save hits selected by user
 // - move user position function to gelocation.js
+// ---- UI ----
+// - header with page title, search and menu buttons
+// - - menu button opens menu
+// - - search button opens search page
+// - menu
+// - hit list
+
 
 // webpack dev stuff
 import 'normalize.css'
@@ -61,6 +68,56 @@ navigator.geolocation.getCurrentPosition((position) => {
 
 // geta all pages
 const pages = document.querySelectorAll('.page');
+
+
+// *** global elements ***
+const nav = document.querySelector('.top_bar');
+const menu_button = nav.querySelector('.menu_button');
+const close_button = nav.querySelector('.close_button');
+const page_title = nav.querySelector('.page_title');
+const menu = nav.querySelector('.menu');
+
+function showNav() {
+    nav.style.display = 'flex';
+}
+
+function hideNav() {
+    nav.style.display = 'none';
+}
+
+menu_button.addEventListener('click', 
+    () => {
+        toggleCloseButton();
+        toggleMenu();
+    }
+);
+
+close_button.addEventListener('click',
+    () => {
+        toggleCloseButton();
+        toggleMenu();
+    }
+);
+
+function setPageTitle(title) {
+    page_title.textContent = title;
+}
+
+function toggleCloseButton() {
+    if (close_button.style.opacity == 1) {
+        close_button.style.opacity = 0;
+    } else {
+        close_button.style.opacity = 1;
+    }
+}
+
+function toggleMenu() {
+    if (menu.classList.contains('open')) {
+        menu.classList.remove('open');
+    } else {
+        menu.classList.add('open');
+    }
+}
 
 
 // *** loading page elements ***
@@ -149,14 +206,11 @@ function buildHitList(hits) {
 
     hits.map(hit => {
         let distance = getDistanceFromUserToHit(user, hit.location)*5280; // distance in feet
-        hitsList.innerHTML += `<div class="hits__item" data-id="${hit.id}">`;
-        hitsList.innerHTML += `<div class="hits__item__name"><h2>${hit.name}</h2></div>`;
-        hitsList.innerHTML += `<div class="hits__item__url">${hit.url}</div>`;
-        hitsList.innerHTML += `<div class="hits__item__status">Distance: ${distance.toFixed(2)} feet</div>`;
-        // hitsList.innerHTML += `<div class="hits__item__location">${hit.location.latitude}, ${hit.location.longitude}</div>`;
-        // hitsList.innerHTML += `<div class="hits__item__status">${hit.status}</div>`;
-        // hitsList.innerHTML += `<div class="hits__item__visibility">${hit.visibility}</div>`;
-        hitsList.innerHTML += `</div>`;
+        hitsList.innerHTML += `<li class="hits__item" data-id="${hit.id}">
+            <h2 class="hits__item_name">${hit.name}</h2>
+            <span class="hits__item_url">${hit.url}</span>
+            <span class="hits__item_status">${distance.toFixed(2)} feet</span>
+        </li>`;
     });
 }
 
@@ -170,6 +224,8 @@ function displaySearchButton() {
 function displayPageSearch() {
     loading.style.display = 'none';
     search.style.display = 'block';
+    showNav();
+    setPageTitle('Search');
 }
 
 // getUserLoction();
