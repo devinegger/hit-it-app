@@ -2,3 +2,5 @@
 @import 'base/_global.css';
 @import 'pages/_loading.css';
 @import 'pages/_search.css';
+@import 'pages/_single.css';
+@import 'pages/_register.css';

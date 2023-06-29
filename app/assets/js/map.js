@@ -14,7 +14,7 @@ export async function initMap(userPosition) {
 
     map = new Map(document.getElementById("map"), {
         center: userPosition,
-        zoom: 8,
+        zoom: 15,
         mapId: process.env.CURRENT_LOCATIOIN_MAP_ID,
     });
 

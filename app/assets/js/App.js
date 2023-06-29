@@ -17,11 +17,14 @@
 // - use local storage to save hits selected by user
 // - move user position function to gelocation.js
 // ---- UI ----
-// - header with page title, search and menu buttons
-// - - menu button opens menu
+// - header with page title, search and menu buttons ✅
+// - - menu button opens menu ✅
 // - - search button opens search page
 // - menu
 // - hit list
+// --- PAGES ---
+// - single hit
+// - register hit
 
 
 // webpack dev stuff
@@ -78,7 +81,7 @@ const page_title = nav.querySelector('.page_title');
 const menu = nav.querySelector('.menu');
 
 function showNav() {
-    nav.style.display = 'flex';
+    nav.style.display = 'block';
 }
 
 function hideNav() {
