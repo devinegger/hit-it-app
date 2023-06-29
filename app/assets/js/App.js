@@ -24,6 +24,7 @@
 // - hit list
 // --- PAGES ---
 // - single hit
+// - - clicking hit goes to single hit page
 // - register hit
 
 
